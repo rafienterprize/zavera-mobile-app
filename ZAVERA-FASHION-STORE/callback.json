@@ -1,0 +1,8 @@
+{
+    "transaction_status": "settlement",
+    "order_id": "ZVR-20260113-FBF7A0A0",
+    "gross_amount": "3277000.00",
+    "payment_type": "bank_transfer",
+    "transaction_id": "test-txn-123",
+    "signature_key": "test"
+}

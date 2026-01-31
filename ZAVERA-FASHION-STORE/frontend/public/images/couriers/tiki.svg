@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 40">
+  <defs>
+    <linearGradient id="tikiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00529B"/>
+      <stop offset="100%" style="stop-color:#003D73"/>
+    </linearGradient>
+  </defs>
+  <rect width="100" height="40" rx="6" fill="url(#tikiGrad)"/>
+  <text x="50" y="27" font-family="Arial, sans-serif" font-size="18" font-weight="900" fill="white" text-anchor="middle" letter-spacing="1">TIKI</text>
+</svg>
