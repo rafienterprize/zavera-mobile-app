@@ -1,0 +1,1 @@
+ C:\\Users\\ibtak\\Desktop\\mobile-app-zavera\\zavera_mobile\\.dart_tool\\flutter_build\\a53a3e5c647a0a89990ff55d7de14628\\native_assets.json: 
