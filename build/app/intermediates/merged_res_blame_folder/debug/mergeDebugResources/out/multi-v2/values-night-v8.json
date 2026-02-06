@@ -4,7 +4,7 @@
             "outputFile": "com.example.zavera_mobile.app-mergeDebugResources-39:/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ibtak\\Desktop\\mobile-app-zavera\\zavera_mobile\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "C:\\Users\\ibtak\\Desktop\\mobile-app-zavera\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

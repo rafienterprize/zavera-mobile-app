@@ -8,6 +8,10 @@
         "source": "com.example.zavera_mobile.app-main-36:/mipmap-xxxhdpi/ic_launcher.png"
     },
     {
+        "merged": "com.example.zavera_mobile.app-debug-41:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.zavera_mobile.app-main-36:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
         "merged": "com.example.zavera_mobile.app-debug-41:/mipmap-xhdpi_ic_launcher.png.flat",
         "source": "com.example.zavera_mobile.app-main-36:/mipmap-xhdpi/ic_launcher.png"
     },

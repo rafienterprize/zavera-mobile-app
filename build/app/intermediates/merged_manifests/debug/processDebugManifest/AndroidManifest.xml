@@ -40,7 +40,7 @@
         android:debuggable="true"
         android:extractNativeLibs="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="zavera_mobile" >
+        android:label="ZAVERA" >
         <activity
             android:name="com.example.zavera_mobile.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

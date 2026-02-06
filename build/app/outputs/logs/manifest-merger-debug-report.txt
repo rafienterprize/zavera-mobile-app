@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 application
-INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\main\AndroidManifest.xml:2:5-33:19
-INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\debug\AndroidManifest.xml
-MERGED from [:url_launcher_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-12:19
-MERGED from [:url_launcher_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-12:19
+INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\main\AndroidManifest.xml:2:5-33:19
+INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\debug\AndroidManifest.xml
+MERGED from [:url_launcher_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-12:19
+MERGED from [:url_launcher_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:7:5-12:19
 MERGED from [androidx.window:window:1.2.0] C:\Users\ibtak\.gradle\caches\8.14\transforms\7217e782825a2d4d49e286a23835439b\transformed\window-1.2.0\AndroidManifest.xml:22:5-29:19
 MERGED from [androidx.window:window:1.2.0] C:\Users\ibtak\.gradle\caches\8.14\transforms\7217e782825a2d4d49e286a23835439b\transformed\window-1.2.0\AndroidManifest.xml:22:5-29:19
 MERGED from [androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\ibtak\.gradle\caches\8.14\transforms\70c7f9c93d870d55aa75fb2befc1cc77\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:23:5-33:19
@@ -17,22 +17,22 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\ibtak\.gradle\cach
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ibtak\.gradle\caches\8.14\transforms\75c850d93edffb1f0e79a2b1090091ce\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ibtak\.gradle\caches\8.14\transforms\75c850d93edffb1f0e79a2b1090091ce\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 	android:extractNativeLibs
-		INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\debug\AndroidManifest.xml
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.17.0] C:\Users\ibtak\.gradle\caches\8.14\transforms\18265d4ebe0e97e3b2b53abd5e729982\transformed\core-1.17.0\AndroidManifest.xml:28:18-86
 	android:name
-		INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\main\AndroidManifest.xml
 manifest
-ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\main\AndroidManifest.xml:1:1-45:12
-MERGED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\main\AndroidManifest.xml:1:1-45:12
-INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\debug\AndroidManifest.xml:1:1-7:12
-INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\debug\AndroidManifest.xml:1:1-7:12
-INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\debug\AndroidManifest.xml:1:1-7:12
-MERGED from [:shared_preferences_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\shared_preferences_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
-MERGED from [:webview_flutter_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\webview_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
-MERGED from [:url_launcher_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-14:12
-MERGED from [:path_provider_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
-MERGED from [:sqflite_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\sqflite_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
+ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\main\AndroidManifest.xml:1:1-45:12
+MERGED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\main\AndroidManifest.xml:1:1-45:12
+INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\debug\AndroidManifest.xml:1:1-7:12
+MERGED from [:shared_preferences_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\shared_preferences_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
+MERGED from [:webview_flutter_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\webview_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
+MERGED from [:url_launcher_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-14:12
+MERGED from [:path_provider_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
+MERGED from [:sqflite_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\sqflite_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.preference:preference:1.2.1] C:\Users\ibtak\.gradle\caches\8.14\transforms\20f0791ef06de9a52b6d96cbab664067\transformed\preference-1.2.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.browser:browser:1.9.0] C:\Users\ibtak\.gradle\caches\8.14\transforms\7ce2ab99595b1cdae7c03aa12a351b1f\transformed\browser-1.9.0\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.webkit:webkit:1.14.0] C:\Users\ibtak\.gradle\caches\8.14\transforms\046075f12b4821a2240c24cc52a0d255\transformed\webkit-1.14.0\AndroidManifest.xml:2:1-7:12
@@ -90,43 +90,43 @@ MERGED from [androidx.annotation:annotation-experimental:1.4.1] C:\Users\ibtak\.
 MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\ibtak\.gradle\caches\8.14\transforms\6bac9ff54d7600151ca9852ac4380233\transformed\core-viewtree-1.0.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\ibtak\.gradle\caches\8.14\transforms\15a558128bbbec921e6710294f0a125f\transformed\relinker-1.4.5\AndroidManifest.xml:2:1-7:12
 	package
-		INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\debug\AndroidManifest.xml
 	android:versionName
-		INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\debug\AndroidManifest.xml
 	android:versionCode
-		INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\debug\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\main\AndroidManifest.xml:1:11-69
+		ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\main\AndroidManifest.xml:1:11-69
 queries
-ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\main\AndroidManifest.xml:39:5-44:15
+ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\main\AndroidManifest.xml:39:5-44:15
 intent#action:name:android.intent.action.PROCESS_TEXT+data:mimeType:text/plain
-ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\main\AndroidManifest.xml:40:9-43:18
+ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\main\AndroidManifest.xml:40:9-43:18
 action#android.intent.action.PROCESS_TEXT
-ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\main\AndroidManifest.xml:41:13-72
+ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\main\AndroidManifest.xml:41:13-72
 	android:name
-		ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\main\AndroidManifest.xml:41:21-70
+		ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\main\AndroidManifest.xml:41:21-70
 data
-ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\main\AndroidManifest.xml:42:13-50
+ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\main\AndroidManifest.xml:42:13-50
 	android:mimeType
-		ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\main\AndroidManifest.xml:42:19-48
+		ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\main\AndroidManifest.xml:42:19-48
 uses-permission#android.permission.INTERNET
-ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\debug\AndroidManifest.xml:6:5-66
+ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\debug\AndroidManifest.xml:6:5-66
 	android:name
-		ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\debug\AndroidManifest.xml:6:22-64
+		ADDED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\debug\AndroidManifest.xml:6:22-64
 uses-sdk
-INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\debug\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\debug\AndroidManifest.xml
-INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\debug\AndroidManifest.xml
-MERGED from [:shared_preferences_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\shared_preferences_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:shared_preferences_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\shared_preferences_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:webview_flutter_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\webview_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:webview_flutter_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\webview_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:url_launcher_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:url_launcher_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:path_provider_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:path_provider_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:sqflite_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\sqflite_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
-MERGED from [:sqflite_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\sqflite_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\debug\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\debug\AndroidManifest.xml
+INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\debug\AndroidManifest.xml
+MERGED from [:shared_preferences_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\shared_preferences_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:shared_preferences_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\shared_preferences_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:webview_flutter_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\webview_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:webview_flutter_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\webview_flutter_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:url_launcher_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:path_provider_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:path_provider_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\path_provider_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:sqflite_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\sqflite_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
+MERGED from [:sqflite_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\sqflite_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:5:5-44
 MERGED from [androidx.preference:preference:1.2.1] C:\Users\ibtak\.gradle\caches\8.14\transforms\20f0791ef06de9a52b6d96cbab664067\transformed\preference-1.2.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.preference:preference:1.2.1] C:\Users\ibtak\.gradle\caches\8.14\transforms\20f0791ef06de9a52b6d96cbab664067\transformed\preference-1.2.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.browser:browser:1.9.0] C:\Users\ibtak\.gradle\caches\8.14\transforms\7ce2ab99595b1cdae7c03aa12a351b1f\transformed\browser-1.9.0\AndroidManifest.xml:5:5-44
@@ -240,17 +240,17 @@ MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\ibtak\.gradle\caches\8.
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\ibtak\.gradle\caches\8.14\transforms\15a558128bbbec921e6710294f0a125f\transformed\relinker-1.4.5\AndroidManifest.xml:5:5-43
 MERGED from [com.getkeepsafe.relinker:relinker:1.4.5] C:\Users\ibtak\.gradle\caches\8.14\transforms\15a558128bbbec921e6710294f0a125f\transformed\relinker-1.4.5\AndroidManifest.xml:5:5-43
 	android:targetSdkVersion
-		INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\debug\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\android\app\src\debug\AndroidManifest.xml
+		INJECTED from C:\Users\ibtak\Desktop\mobile-app-zavera\android\app\src\debug\AndroidManifest.xml
 activity#io.flutter.plugins.urllauncher.WebViewActivity
-ADDED from [:url_launcher_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-11:74
+ADDED from [:url_launcher_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:8:9-11:74
 	android:exported
-		ADDED from [:url_launcher_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:13-37
+		ADDED from [:url_launcher_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:10:13-37
 	android:theme
-		ADDED from [:url_launcher_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:13-71
+		ADDED from [:url_launcher_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:11:13-71
 	android:name
-		ADDED from [:url_launcher_android] C:\Users\ibtak\Desktop\mobile-app-zavera\zavera_mobile\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-74
+		ADDED from [:url_launcher_android] C:\Users\ibtak\Desktop\mobile-app-zavera\build\url_launcher_android\intermediates\merged_manifest\debug\processDebugManifest\AndroidManifest.xml:9:13-74
 uses-library#androidx.window.extensions
 ADDED from [androidx.window:window:1.2.0] C:\Users\ibtak\.gradle\caches\8.14\transforms\7217e782825a2d4d49e286a23835439b\transformed\window-1.2.0\AndroidManifest.xml:23:9-25:40
 	android:required

@@ -1,0 +1,138 @@
+========================================
+  DEVICE PREVIEW - KAYAK DI SCREENSHOT!
+========================================
+
+Ini yang kamu mau bro! Preview muncul di sebelah kanan!
+
+
+CARA PAKAI (SUPER SIMPLE!)
+========================================
+
+Double-click file ini:
+  run-preview-windows.bat
+
+Tunggu:
+- Install package (~10 detik)
+- App start (~20 detik)
+
+Total: ~30 detik
+
+
+HASIL
+========================================
+
+Preview akan muncul di WINDOWS APP:
+
+┌─────────────────┬─────────────────┐
+│                 │                 │
+│   VS Code       │   Device        │
+│   (Code)        │   Preview       │
+│                 │   📱            │
+│                 │                 │
+└─────────────────┴─────────────────┘
+
+
+FEATURES
+========================================
+
+Toolbar di atas preview:
+- 📱 Pilih device (iPhone 16, Pixel, iPad)
+- 🔄 Rotate device (portrait/landscape)
+- 🌙 Dark mode toggle
+- 📏 Text scale (accessibility)
+- 📸 Screenshot
+
+
+HOT RELOAD
+========================================
+
+1. Edit code:
+   zavera_mobile/lib/screens/home_screen.dart
+
+2. Save: Ctrl+S
+
+3. Hot Reload: Tekan 'r' di terminal
+
+4. Lihat perubahan: < 1 detik! ⚡
+
+
+COMMANDS
+========================================
+
+r  = Hot Reload (fast - 1 detik)
+R  = Hot Restart (full restart)
+q  = Quit
+
+
+WORKFLOW
+========================================
+
+1. Run: run-preview-windows.bat
+   ↓
+2. Edit code
+   ↓
+3. Save (Ctrl+S)
+   ↓
+4. Tekan 'r'
+   ↓
+5. Lihat perubahan di preview! ⚡
+
+
+TIPS
+========================================
+
+Split Screen:
+- Kiri: VS Code (edit code)
+- Kanan: Preview (lihat hasil)
+
+Rotate Device:
+- Klik icon rotate untuk test landscape
+
+Dark Mode:
+- Toggle dark/light mode
+
+Multiple Devices:
+- Ganti device dari toolbar
+
+
+FILES
+========================================
+
+MAIN:
+  run-preview-windows.bat    ← START HERE!
+
+DOCS:
+  CARA_PAKAI_DEVICE_PREVIEW.md
+
+
+TROUBLESHOOTING
+========================================
+
+Preview not showing?
+  → flutter pub get
+  → Run lagi
+
+Hot reload not working?
+  → Press 'R' (capital R)
+
+App slow?
+  → Close Chrome, browser
+  → Use smaller device
+
+
+SUMMARY
+========================================
+
+Run:
+  run-preview-windows.bat
+
+Preview:
+  Muncul di sebelah kanan
+
+Hot Reload:
+  Edit → Save → Press 'r' → Done! ⚡
+
+
+========================================
+  PERSIS KAYAK DI SCREENSHOT! 🔥
+========================================

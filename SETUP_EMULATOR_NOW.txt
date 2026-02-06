@@ -1,0 +1,105 @@
+========================================
+  SETUP EMULATOR - IKUTI INI!
+========================================
+
+Android Studio udah dibuka!
+
+Sekarang ikuti langkah ini:
+
+
+STEP 1: BUKA DEVICE MANAGER
+========================================
+
+Di Android Studio:
+1. Klik menu: Tools
+2. Klik: Device Manager
+
+Atau:
+- Klik icon 📱 di toolbar kanan atas
+
+
+STEP 2: CREATE DEVICE
+========================================
+
+Di Device Manager:
+1. Klik: Create Device (atau tombol +)
+
+
+STEP 3: PILIH DEVICE
+========================================
+
+1. Category: Phone
+2. Pilih: Pixel 5
+3. Klik: Next
+
+
+STEP 4: DOWNLOAD SYSTEM IMAGE
+========================================
+
+1. Pilih: Tiramisu (Android 13, API 33)
+2. Klik: Download (kalau belum ada)
+3. Tunggu download selesai (500MB - 1GB)
+4. Klik: Next
+
+
+STEP 5: CONFIGURE AVD
+========================================
+
+Settings (biarkan default):
+- AVD Name: Pixel 5 API 33
+- Startup orientation: Portrait
+- Graphics: Automatic
+
+Klik: Finish
+
+
+STEP 6: DONE!
+========================================
+
+Emulator udah siap!
+
+Sekarang test:
+1. Klik ▶️ di sebelah emulator
+2. Tunggu boot (30-60 detik)
+3. Emulator akan muncul!
+
+
+STEP 7: RUN APP
+========================================
+
+Setelah emulator jalan:
+
+Double-click:
+  run-with-preview.bat
+
+Atau manual:
+  cd zavera_mobile
+  flutter run
+
+
+HOT RELOAD
+========================================
+
+Setelah app jalan:
+1. Edit code
+2. Save (Ctrl+S)
+3. Tekan 'r' di terminal
+4. Lihat perubahan! ⚡
+
+
+SPLIT SCREEN
+========================================
+
+┌──────────────┬──────────────┐
+│              │              │
+│  VS Code     │  Emulator    │
+│  (Code)      │  (Preview)   │
+│              │              │
+└──────────────┴──────────────┘
+
+Drag emulator window ke kanan!
+
+
+========================================
+  SELAMAT! SETUP SELESAI! 🎉
+========================================
