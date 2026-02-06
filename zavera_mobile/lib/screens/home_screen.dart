@@ -3,8 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';
-import '../models/product.dart';
-import '../services/api_service.dart';
 import '../widgets/horizontal_category_scroll.dart';
 import '../providers/auth_provider.dart';
 import 'category_detail_screen.dart';
@@ -17,11 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final ApiService _apiService = ApiService();
-  List<Product> _products = [];
-  bool _isLoading = true;
   final FocusNode _searchFocusNode = FocusNode();
-  bool _isGridView = true; // Toggle grid/list view
 
   final List<Map<String, String>> _banners = [
     {
@@ -56,7 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _loadProducts();
   }
 
   @override
@@ -65,17 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.dispose();
   }
 
-  Future<void> _loadProducts() async {
-    setState(() => _isLoading = true);
-    final products = await _apiService.getProducts();
-    setState(() {
-      _products = products;
-      _isLoading = false;
-    });
-  }
-
   Widget _buildNavItem(String label) {
-    // Define subcategories for each main category
     final Map<String, List<String>> subcategories = {
       'Wanita': ['Dress', 'Tops', 'Bottoms', 'Outerwear'],
       'Pria': ['Shirts', 'Pants', 'Jackets', 'Suits'],
@@ -200,10 +183,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
-                  child: Row(
+                  child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
+                      Text(
                         'Lihat Semua',
                         style: TextStyle(
                           fontSize: 14,
@@ -211,8 +194,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Color(0xFF1a1a1a),
                         ),
                       ),
-                      const SizedBox(width: 8),
-                      const Icon(
+                      SizedBox(width: 8),
+                      Icon(
                         Icons.arrow_forward,
                         size: 16,
                         color: Color(0xFF1a1a1a),
@@ -234,7 +217,6 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.white,
       body: GestureDetector(
         onTap: () {
-          // Unfocus kalau tap di luar TextField
           FocusScope.of(context).unfocus();
         },
         child: SafeArea(
@@ -245,121 +227,114 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
                 child: Row(
                   children: [
-                  Expanded(
-                    child: Container(
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.grey[100],
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: Colors.grey[300]!),
-                      ),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 12),
-                            child: Icon(
-                              Icons.search,
-                              color: Colors.grey[600],
-                              size: 20,
-                            ),
-                          ),
-                          Expanded(
-                            child: TextField(
-                              focusNode: _searchFocusNode,
-                              decoration: InputDecoration(
-                                hintText: 'Cari produk...',
-                                hintStyle: TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.grey[500],
-                                ),
-                                border: InputBorder.none,
-                                contentPadding: EdgeInsets.zero,
-                                isDense: true,
+                    Expanded(
+                      child: Container(
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[100],
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey[300]!),
+                        ),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 12),
+                              child: Icon(
+                                Icons.search,
+                                color: Colors.grey[600],
+                                size: 20,
                               ),
-                              onTap: () {
-                                // Kalau user tap search, focus
-                                _searchFocusNode.requestFocus();
-                              },
                             ),
-                          ),
-                        ],
+                            Expanded(
+                              child: TextField(
+                                focusNode: _searchFocusNode,
+                                decoration: InputDecoration(
+                                  hintText: 'Cari produk...',
+                                  hintStyle: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.grey[500],
+                                  ),
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.zero,
+                                  isDense: true,
+                                ),
+                                onTap: () {
+                                  _searchFocusNode.requestFocus();
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 12),
-                  IconButton(
-                    icon: const Icon(Icons.favorite_border, size: 24),
-                    onPressed: () {
-                      final authProvider = context.read<AuthProvider>();
-                      if (!authProvider.isAuthenticated) {
-                        // User belum login, arahkan ke login
-                        Navigator.pushNamed(context, '/login');
-                      } else {
-                        // User sudah login, buka wishlist (sementara tetap di home)
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Fitur Wishlist akan segera tersedia')),
-                        );
-                      }
-                    },
-                    color: const Color(0xFF1a1a1a),
-                    padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.shopping_cart_outlined, size: 24),
-                    onPressed: () {
-                      final authProvider = context.read<AuthProvider>();
-                      if (!authProvider.isAuthenticated) {
-                        // User belum login, arahkan ke login
-                        Navigator.pushNamed(context, '/login');
-                      } else {
-                        // User sudah login, buka cart (sementara tetap di home)
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Fitur Keranjang akan segera tersedia')),
-                        );
-                      }
-                    },
-                    color: const Color(0xFF1a1a1a),
-                    padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              height: 1,
-              color: Colors.grey[200],
-            ),
-            Container(
-              color: Colors.white,
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  children: [
-                    _buildNavItem('Wanita'),
-                    _buildNavItem('Pria'),
-                    _buildNavItem('Sports'),
-                    _buildNavItem('Anak'),
-                    _buildNavItem('Luxury'),
-                    _buildNavItem('Beauty'),
+                    const SizedBox(width: 12),
+                    IconButton(
+                      icon: const Icon(Icons.favorite_border, size: 24),
+                      onPressed: () {
+                        final authProvider = context.read<AuthProvider>();
+                        if (!authProvider.isAuthenticated) {
+                          Navigator.pushNamed(context, '/login');
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Fitur Wishlist akan segera tersedia')),
+                          );
+                        }
+                      },
+                      color: const Color(0xFF1a1a1a),
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.shopping_cart_outlined, size: 24),
+                      onPressed: () {
+                        final authProvider = context.read<AuthProvider>();
+                        if (!authProvider.isAuthenticated) {
+                          Navigator.pushNamed(context, '/login');
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Fitur Keranjang akan segera tersedia')),
+                          );
+                        }
+                      },
+                      color: const Color(0xFF1a1a1a),
+                      padding: EdgeInsets.zero,
+                      constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
+                    ),
                   ],
                 ),
               ),
-            ),
-            Container(
-              height: 1,
-              color: Colors.grey[200],
-            ),
-            Expanded(
-              child: RefreshIndicator(
-                onRefresh: _loadProducts,
+              Container(
+                height: 1,
+                color: Colors.grey[200],
+              ),
+              Container(
+                color: Colors.white,
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    children: [
+                      _buildNavItem('Wanita'),
+                      _buildNavItem('Pria'),
+                      _buildNavItem('Sports'),
+                      _buildNavItem('Anak'),
+                      _buildNavItem('Luxury'),
+                      _buildNavItem('Beauty'),
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                height: 1,
+                color: Colors.grey[200],
+              ),
+              Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                        CarouselSlider(
+                      CarouselSlider(
                         options: CarouselOptions(
                           height: 450,
                           viewportFraction: 1.0,
@@ -975,235 +950,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                       ),
-                      // Products Section with Grid/List Toggle
-                      if (_products.isNotEmpty)
-                        Container(
-                          color: Colors.white,
-                          padding: const EdgeInsets.all(20),
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Semua Produk',
-                                        style: GoogleFonts.playfairDisplay(
-                                          fontSize: 28,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        '${_products.length} produk tersedia',
-                                        style: const TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 13,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  // Grid/List Toggle
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.grey[300]!),
-                                      borderRadius: BorderRadius.circular(8),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        IconButton(
-                                          icon: Icon(
-                                            Icons.grid_view,
-                                            color: _isGridView ? Colors.black : Colors.grey,
-                                          ),
-                                          onPressed: () {
-                                            setState(() => _isGridView = true);
-                                          },
-                                          padding: const EdgeInsets.all(8),
-                                          constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
-                                        ),
-                                        Container(
-                                          width: 1,
-                                          height: 24,
-                                          color: Colors.grey[300],
-                                        ),
-                                        IconButton(
-                                          icon: Icon(
-                                            Icons.view_list,
-                                            color: !_isGridView ? Colors.black : Colors.grey,
-                                          ),
-                                          onPressed: () {
-                                            setState(() => _isGridView = false);
-                                          },
-                                          padding: const EdgeInsets.all(8),
-                                          constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 20),
-                              // Grid View
-                              if (_isGridView)
-                                GridView.builder(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    childAspectRatio: 0.7,
-                                    crossAxisSpacing: 12,
-                                    mainAxisSpacing: 12,
-                                  ),
-                                  itemCount: _products.length,
-                                  itemBuilder: (context, index) {
-                                    final product = _products[index];
-                                    return GestureDetector(
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                          context,
-                                          '/product-detail',
-                                          arguments: product.id,
-                                        );
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(8),
-                                          border: Border.all(color: Colors.grey[200]!),
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Expanded(
-                                              child: ClipRRect(
-                                                borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
-                                                child: CachedNetworkImage(
-                                                  imageUrl: product.primaryImage,
-                                                  width: double.infinity,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.all(8),
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    product.name,
-                                                    style: const TextStyle(
-                                                      fontSize: 14,
-                                                      fontWeight: FontWeight.w500,
-                                                    ),
-                                                    maxLines: 2,
-                                                    overflow: TextOverflow.ellipsis,
-                                                  ),
-                                                  const SizedBox(height: 4),
-                                                  Text(
-                                                    'Rp ${product.price.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]}.')}',
-                                                    style: const TextStyle(
-                                                      fontSize: 16,
-                                                      fontWeight: FontWeight.bold,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              // List View
-                              if (!_isGridView)
-                                ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  itemCount: _products.length,
-                                  itemBuilder: (context, index) {
-                                    final product = _products[index];
-                                    return GestureDetector(
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                          context,
-                                          '/product-detail',
-                                          arguments: product.id,
-                                        );
-                                      },
-                                      child: Container(
-                                        margin: const EdgeInsets.only(bottom: 12),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(8),
-                                          border: Border.all(color: Colors.grey[200]!),
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            ClipRRect(
-                                              borderRadius: const BorderRadius.horizontal(left: Radius.circular(8)),
-                                              child: CachedNetworkImage(
-                                                imageUrl: product.primaryImage,
-                                                width: 120,
-                                                height: 120,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Padding(
-                                                padding: const EdgeInsets.all(12),
-                                                child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      product.category.toUpperCase(),
-                                                      style: TextStyle(
-                                                        fontSize: 11,
-                                                        color: Colors.grey[600],
-                                                        letterSpacing: 1,
-                                                      ),
-                                                    ),
-                                                    const SizedBox(height: 4),
-                                                    Text(
-                                                      product.name,
-                                                      style: const TextStyle(
-                                                        fontSize: 16,
-                                                        fontWeight: FontWeight.w600,
-                                                      ),
-                                                      maxLines: 2,
-                                                      overflow: TextOverflow.ellipsis,
-                                                    ),
-                                                    const SizedBox(height: 8),
-                                                    Text(
-                                                      'Rp ${product.price.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]}.')}',
-                                                      style: const TextStyle(
-                                                        fontSize: 18,
-                                                        fontWeight: FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                            ],
-                          ),
-                        ),
                     ],
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
       ),
     );
   }

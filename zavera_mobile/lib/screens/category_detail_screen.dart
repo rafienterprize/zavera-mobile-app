@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import '../models/product.dart';
+import '../services/api_service.dart';
+import '../widgets/product_card.dart';
 
 class CategoryDetailScreen extends StatefulWidget {
   final String category;
@@ -17,6 +20,11 @@ class CategoryDetailScreen extends StatefulWidget {
 }
 
 class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
+  final ApiService _apiService = ApiService();
+  List<Product> _products = [];
+  bool _isLoading = true;
+  bool _isGridView = true;
+  
   String _selectedSubcategory = 'Semua';
   final List<String> _selectedSizes = [];
   String _selectedPriceRange = 'Semua Harga';
@@ -48,6 +56,21 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
     'Luxury': 'Koleksi eksklusif dari brand designer ternama',
     'Beauty': 'Produk perawatan premium untuk kecantikan Anda',
   };
+
+  @override
+  void initState() {
+    super.initState();
+    _loadProducts();
+  }
+
+  Future<void> _loadProducts() async {
+    setState(() => _isLoading = true);
+    final products = await _apiService.getProducts(category: widget.category);
+    setState(() {
+      _products = products;
+      _isLoading = false;
+    });
+  }
 
   void _showFilterSheet() {
     showModalBottomSheet(
@@ -301,7 +324,7 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
               child: Row(
                 children: [
                   Text(
-                    '0 Produk',
+                    '${_products.length} Produk',
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.grey[600],
@@ -372,8 +395,10 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
                   const SizedBox(width: 8),
                   // Grid/List Toggle
                   IconButton(
-                    icon: const Icon(Icons.grid_view, size: 20),
-                    onPressed: () {},
+                    icon: Icon(_isGridView ? Icons.grid_view : Icons.view_list, size: 20),
+                    onPressed: () {
+                      setState(() => _isGridView = !_isGridView);
+                    },
                     padding: const EdgeInsets.all(8),
                     constraints: const BoxConstraints(),
                   ),
@@ -389,65 +414,96 @@ class _CategoryDetailScreenState extends State<CategoryDetailScreen> {
             ),
           ),
           
-          // Empty State
-          SliverFillRemaining(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(32),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.inventory_2_outlined,
-                      size: 80,
-                      color: Colors.grey[300],
-                    ),
-                    const SizedBox(height: 24),
-                    Text(
-                      'Koleksi Segera Hadir',
-                      style: GoogleFonts.playfairDisplay(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: const Color(0xFF1a1a1a),
+          // Product Grid/List
+          if (_isLoading)
+            const SliverFillRemaining(
+              child: Center(child: CircularProgressIndicator()),
+            )
+          else if (_products.isEmpty)
+            SliverFillRemaining(
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(32),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.inventory_2_outlined,
+                        size: 80,
+                        color: Colors.grey[300],
                       ),
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      'Kami sedang menyiapkan koleksi terbaik untuk kategori ini.\nJelajahi kategori lainnya atau kembali lagi nanti.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey[600],
-                        height: 1.5,
-                      ),
-                    ),
-                    const SizedBox(height: 32),
-                    OutlinedButton(
-                      onPressed: () => Navigator.pop(context),
-                      style: OutlinedButton.styleFrom(
-                        side: const BorderSide(color: Color(0xFF1a1a1a)),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 32,
-                          vertical: 14,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
+                      const SizedBox(height: 24),
+                      Text(
+                        'Koleksi Segera Hadir',
+                        style: GoogleFonts.playfairDisplay(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: const Color(0xFF1a1a1a),
                         ),
                       ),
-                      child: const Text(
-                        'Jelajahi Koleksi Lain',
+                      const SizedBox(height: 12),
+                      Text(
+                        'Kami sedang menyiapkan koleksi terbaik untuk kategori ini.\nJelajahi kategori lainnya atau kembali lagi nanti.',
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFF1a1a1a),
+                          color: Colors.grey[600],
+                          height: 1.5,
                         ),
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 32),
+                      OutlinedButton(
+                        onPressed: () => Navigator.pop(context),
+                        style: OutlinedButton.styleFrom(
+                          side: const BorderSide(color: Color(0xFF1a1a1a)),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 32,
+                            vertical: 14,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        child: const Text(
+                          'Jelajahi Koleksi Lain',
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF1a1a1a),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
+            )
+          else
+            SliverPadding(
+              padding: const EdgeInsets.all(16),
+              sliver: _isGridView
+                  ? SliverGrid(
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 0.65,
+                        crossAxisSpacing: 12,
+                        mainAxisSpacing: 12,
+                      ),
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) => ProductCard(product: _products[index]),
+                        childCount: _products.length,
+                      ),
+                    )
+                  : SliverList(
+                      delegate: SliverChildBuilderDelegate(
+                        (context, index) => Padding(
+                          padding: const EdgeInsets.only(bottom: 12),
+                          child: ProductCard(product: _products[index]),
+                        ),
+                        childCount: _products.length,
+                      ),
+                    ),
             ),
-          ),
         ],
       ),
     );
