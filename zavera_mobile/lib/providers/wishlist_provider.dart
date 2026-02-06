@@ -1,42 +1,57 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../services/api_service.dart';
+import '../models/product.dart';
 
 class WishlistProvider with ChangeNotifier {
-  Set<int> _wishlistIds = {};
+  final ApiService _apiService = ApiService();
+  List<Product> _items = [];
+  bool _isLoading = false;
 
-  Set<int> get wishlistIds => _wishlistIds;
-  int get count => _wishlistIds.length;
+  List<Product> get items => _items;
+  int get count => _items.length;
+  bool get isLoading => _isLoading;
 
-  WishlistProvider() {
-    _loadWishlist();
-  }
-
-  Future<void> _loadWishlist() async {
-    final prefs = await SharedPreferences.getInstance();
-    final data = prefs.getString('wishlist');
-    if (data != null) {
-      _wishlistIds = Set<int>.from(json.decode(data));
-      notifyListeners();
-    }
-  }
-
-  Future<void> _saveWishlist() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('wishlist', json.encode(_wishlistIds.toList()));
+  Future<void> loadWishlist() async {
+    _isLoading = true;
+    notifyListeners();
+    
+    final products = await _apiService.getWishlist();
+    _items = products;
+    
+    _isLoading = false;
+    notifyListeners();
   }
 
   bool isInWishlist(int productId) {
-    return _wishlistIds.contains(productId);
+    return _items.any((p) => p.id == productId);
   }
 
-  void toggleWishlist(int productId) {
-    if (_wishlistIds.contains(productId)) {
-      _wishlistIds.remove(productId);
-    } else {
-      _wishlistIds.add(productId);
+  Future<void> addToWishlist(int productId) async {
+    final success = await _apiService.addToWishlist(productId);
+    if (success) {
+      await loadWishlist();
     }
-    _saveWishlist();
-    notifyListeners();
+  }
+
+  Future<void> removeFromWishlist(int productId) async {
+    final success = await _apiService.removeFromWishlist(productId);
+    if (success) {
+      await loadWishlist();
+    }
+  }
+
+  Future<void> toggleWishlist(int productId) async {
+    if (isInWishlist(productId)) {
+      await removeFromWishlist(productId);
+    } else {
+      await addToWishlist(productId);
+    }
+  }
+
+  Future<void> moveToCart(int productId) async {
+    final success = await _apiService.moveToCart(productId);
+    if (success) {
+      await loadWishlist();
+    }
   }
 }

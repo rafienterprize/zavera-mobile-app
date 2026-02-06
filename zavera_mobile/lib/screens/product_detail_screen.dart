@@ -249,18 +249,20 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
-                    context.read<CartProvider>().addToCart(
-                          _product!,
+                  onPressed: () async {
+                    final success = await context.read<CartProvider>().addToCart(
+                          _product!.id,
                           _quantity,
-                          selectedSize: _selectedSize,
+                          variantId: null,
                         );
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Produk ditambahkan ke keranjang'),
-                        duration: Duration(seconds: 2),
-                      ),
-                    );
+                    if (success && mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Produk ditambahkan ke keranjang'),
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF1a1a1a),

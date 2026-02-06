@@ -22,18 +22,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
     setState(() => _isLoading = true);
 
-    final success = await context.read<AuthProvider>().login(
+    final result = await context.read<AuthProvider>().login(
           _emailController.text,
           _passwordController.text,
         );
 
     setState(() => _isLoading = false);
 
-    if (success && mounted) {
+    if (result['success'] == true && mounted) {
       Navigator.pushReplacementNamed(context, '/home');
     } else if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Login gagal. Periksa email dan password Anda.')),
+        SnackBar(content: Text(result['message'] ?? 'Login gagal. Periksa email dan password Anda.')),
       );
     }
   }
@@ -223,11 +223,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 32),
                 // Login dengan Google Button
                 OutlinedButton.icon(
-                  onPressed: () {
-                    // TODO: Implement Google Sign In
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Login dengan Google akan segera tersedia')),
-                    );
+                  onPressed: () async {
+                    // TODO: Implement Google Sign-In
+                    // Yanz perlu setup:
+                    // 1. Google Cloud Console (bukan Firebase)
+                    // 2. OAuth Client ID untuk Android
+                    // 3. Install google_sign_in package
+                    // 4. Get SHA-1 certificate
                   },
                   icon: Image.asset(
                     'assets/icons/google.png',

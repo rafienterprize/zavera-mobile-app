@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'providers/cart_provider.dart';
 import 'providers/auth_provider.dart';
 import 'providers/wishlist_provider.dart';
 import 'screens/splash_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/categories_screen.dart';
-import 'screens/cart_screen.dart';
 import 'screens/orders_screen.dart';
 import 'screens/profile_screen.dart';
 import 'screens/product_detail_screen.dart';
@@ -15,7 +15,9 @@ import 'screens/login_screen.dart';
 import 'screens/register_screen.dart';
 import 'screens/checkout_screen.dart';
 
-void main() {
+Future<void> main() async {
+  // Load .env file
+  await dotenv.load(fileName: ".env");
   runApp(const MyApp());
 }
 

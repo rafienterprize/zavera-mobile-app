@@ -1654,25 +1654,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\ibtak\\Desktop\\mobile-app-zavera\\zavera_mobile\\android\\app\\src\\main\\res\\values\\styles.xml",
-                    "from": {
-                        "startLines": "3,14",
-                        "startColumns": "4,4",
-                        "startOffsets": "176,832",
-                        "endLines": "7,16",
-                        "endColumns": "12,12",
-                        "endOffsets": "483,998"
-                    },
-                    "to": {
-                        "startLines": "1503,1507",
-                        "startColumns": "4,4",
-                        "startOffsets": "94535,94716",
-                        "endLines": "1506,1509",
-                        "endColumns": "12,12",
-                        "endOffsets": "94711,94880"
-                    }
-                },
-                {
                     "source": "C:\\Users\\ibtak\\.gradle\\caches\\8.14\\transforms\\20f0791ef06de9a52b6d96cbab664067\\transformed\\preference-1.2.1\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,22,23,24,25,42,45,51,57,60,66,70,73,80,86,89,95,100,105,112,114,120,126,134,139,146,151,157,161,168,172,178,184,187,192,193,194,199,215,238,243,257,268,348,358,368,386,392,439,461,485",
@@ -1706,6 +1687,25 @@
                         "startOffsets": "18724,18764,18981,19319,19374,20505,20559,20611,20660,20721",
                         "endColumns": "39,46,42,54,46,53,51,48,60,49",
                         "endOffsets": "18759,18806,19019,19369,19416,20554,20606,20655,20716,20766"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\ibtak\\Desktop\\mobile-app-zavera\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "3,14",
+                        "startColumns": "4,4",
+                        "startOffsets": "176,832",
+                        "endLines": "7,16",
+                        "endColumns": "12,12",
+                        "endOffsets": "483,998"
+                    },
+                    "to": {
+                        "startLines": "1503,1507",
+                        "startColumns": "4,4",
+                        "startOffsets": "94535,94716",
+                        "endLines": "1506,1509",
+                        "endColumns": "12,12",
+                        "endOffsets": "94711,94880"
                     }
                 }
             ]
@@ -4002,7 +4002,7 @@
             "outputFile": "com.example.zavera_mobile.app-debug-41:/values-night-v8_values-night-v8.arsc.flat",
             "map": [
                 {
-                    "source": "C:\\Users\\ibtak\\Desktop\\mobile-app-zavera\\zavera_mobile\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "C:\\Users\\ibtak\\Desktop\\mobile-app-zavera\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

@@ -1,0 +1,117 @@
+========================================
+  HOT RELOAD - KAYAK DI TIKTOK!
+========================================
+
+Ini yang kamu mau bro! Edit code, save, langsung keliatan di emulator!
+
+
+STEP 1: SETUP EMULATOR (SEKALI AJA!)
+========================================
+
+Double-click file ini:
+  setup-emulator.bat
+
+Ikuti instruksi:
+1. Android Studio akan terbuka
+2. Tools → Device Manager
+3. Create Device → Pixel 5
+4. Download Android 13 (API 33)
+5. Finish
+
+Time: 5-10 menit
+
+
+STEP 2: RUN APP (SETIAP HARI!)
+========================================
+
+Double-click file ini:
+  run-emulator-and-app.bat
+
+Tunggu:
+- Emulator boot (~40 detik)
+- App install & run (~20 detik)
+
+Total: ~1 menit
+
+
+STEP 3: EDIT & HOT RELOAD
+========================================
+
+1. Edit code:
+   zavera_mobile/lib/screens/home_screen.dart
+
+2. Save: Ctrl+S
+
+3. Hot Reload: Tekan 'r' di terminal
+
+4. Lihat perubahan: < 1 detik! ⚡
+
+
+COMMANDS
+========================================
+
+r  = Hot Reload (cepet - 1 detik)
+R  = Hot Restart (full restart)
+q  = Quit
+
+
+CONTOH EDIT
+========================================
+
+Ganti text:
+  Text('Welcome')  →  Text('Welcome to ZAVERA!')
+
+Ganti warna:
+  Colors.blue  →  Colors.red
+
+Ganti size:
+  fontSize: 16  →  fontSize: 24
+
+Save → Tekan 'r' → Done!
+
+
+FILES
+========================================
+
+MAIN:
+  run-emulator-and-app.bat    ← START HERE!
+  setup-emulator.bat          ← Setup emulator
+
+DOCS:
+  START_HERE_HOT_RELOAD.md    ← Full guide
+  README_HOT_RELOAD.md        ← Complete guide
+  QUICK_REFERENCE_HOT_RELOAD.md ← Quick ref
+
+
+TROUBLESHOOTING
+========================================
+
+No emulator?
+  → setup-emulator.bat
+
+Hot reload not working?
+  → Press 'R' (capital R)
+
+Emulator slow?
+  → Close Chrome, browser
+  → Allocate 4GB RAM
+
+
+SUMMARY
+========================================
+
+Setup (once):
+  setup-emulator.bat
+
+Run (daily):
+  run-emulator-and-app.bat
+
+Hot Reload:
+  Edit → Save → Press 'r' → Done! ⚡
+
+Time: < 1 second!
+
+
+========================================
+  PERSIS KAYAK DI TIKTOK! 🔥
+========================================

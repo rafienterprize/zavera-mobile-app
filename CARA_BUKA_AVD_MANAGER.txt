@@ -1,0 +1,83 @@
+========================================
+  CARA BUKA AVD MANAGER
+========================================
+
+Close Settings dulu!
+
+Terus ada 3 cara:
+
+
+CARA 1: DARI WELCOME SCREEN
+========================================
+
+Kalau Android Studio baru dibuka (Welcome screen):
+1. Klik: More Actions (3 titik vertikal)
+2. Klik: Virtual Device Manager
+
+
+CARA 2: DARI PROJECT
+========================================
+
+Kalau udah buka project:
+1. Klik icon 📱 di toolbar KANAN ATAS
+2. Atau klik: View → Tool Windows → Device Manager
+
+
+CARA 3: DARI MENU TOOLS (KALAU ADA PROJECT)
+========================================
+
+1. File → Open
+2. Buka folder: zavera_mobile
+3. Tunggu project load
+4. Klik: Tools → Device Manager
+
+
+CARA 4: PAKAI COMMAND LINE (PALING GAMPANG!)
+========================================
+
+Gak usah pakai Android Studio!
+
+Double-click file ini:
+  create-emulator-cli.bat
+
+Atau manual:
+  avdmanager create avd -n Pixel_5 -k "system-images;android-33;google_apis;x86_64" -d pixel_5
+
+
+CARA 5: PAKAI HP AJA!
+========================================
+
+Gak usah emulator, pakai HP langsung:
+
+1. Enable USB Debugging di HP
+2. Colok HP via USB
+3. Run: run-with-preview.bat
+
+Lebih cepet dari emulator!
+
+
+RECOMMENDATION
+========================================
+
+Pakai HP aja bro! Lebih cepet & gak ribet!
+
+1. Enable Developer Options di HP:
+   - Settings → About Phone
+   - Tap "Build Number" 7x
+
+2. Enable USB Debugging:
+   - Settings → Developer Options
+   - Enable USB Debugging
+
+3. Colok HP via USB
+
+4. Run:
+   run-with-preview.bat
+
+5. Hot Reload:
+   Edit → Save → Tekan 'r' → Done!
+
+
+========================================
+  PAKAI HP LEBIH GAMPANG! 🔥
+========================================

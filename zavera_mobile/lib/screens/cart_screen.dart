@@ -110,9 +110,8 @@ class CartScreen extends StatelessWidget {
                                       onPressed: () {
                                         if (item.quantity > 1) {
                                           cart.updateQuantity(
-                                            item.product.id,
+                                            item.id,
                                             item.quantity - 1,
-                                            selectedSize: item.selectedSize,
                                           );
                                         }
                                       },
@@ -127,9 +126,8 @@ class CartScreen extends StatelessWidget {
                                       icon: const Icon(Icons.add_circle_outline),
                                       onPressed: () {
                                         cart.updateQuantity(
-                                          item.product.id,
+                                          item.id,
                                           item.quantity + 1,
-                                          selectedSize: item.selectedSize,
                                         );
                                       },
                                     ),
@@ -138,10 +136,7 @@ class CartScreen extends StatelessWidget {
                                 IconButton(
                                   icon: const Icon(Icons.delete_outline, color: Colors.red),
                                   onPressed: () {
-                                    cart.removeFromCart(
-                                      item.product.id,
-                                      selectedSize: item.selectedSize,
-                                    );
+                                    cart.removeFromCart(item.id);
                                   },
                                 ),
                               ],

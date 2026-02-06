@@ -1,84 +1,94 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../models/cart_item.dart';
-import '../models/product.dart';
+import '../services/api_service.dart';
 
 class CartProvider with ChangeNotifier {
   List<CartItem> _items = [];
+  bool _isLoading = false;
+  final ApiService _apiService = ApiService();
 
   List<CartItem> get items => _items;
-
+  bool get isLoading => _isLoading;
   int get totalItems => _items.fold(0, (sum, item) => sum + item.quantity);
+  double get totalPrice => _items.fold(0, (sum, item) => sum + (item.product.price * item.quantity));
 
-  double get totalPrice => _items.fold(0, (sum, item) => sum + item.totalPrice);
-
-  CartProvider() {
-    _loadCart();
-  }
-
-  Future<void> _loadCart() async {
-    final prefs = await SharedPreferences.getInstance();
-    final cartData = prefs.getString('cart');
-    if (cartData != null) {
-      final List<dynamic> decoded = json.decode(cartData);
-      _items = decoded.map((item) => CartItem.fromJson(item)).toList();
-      notifyListeners();
+  Future<void> loadCart() async {
+    _isLoading = true;
+    notifyListeners();
+    
+    try {
+      _items = await _apiService.getCart();
+    } catch (e) {
+      print('Error loading cart: $e');
     }
-  }
-
-  Future<void> _saveCart() async {
-    final prefs = await SharedPreferences.getInstance();
-    final encoded = json.encode(_items.map((item) => item.toJson()).toList());
-    await prefs.setString('cart', encoded);
-  }
-
-  void addToCart(Product product, int quantity, {String? selectedSize}) {
-    final existingIndex = _items.indexWhere(
-      (item) => item.product.id == product.id && item.selectedSize == selectedSize,
-    );
-
-    if (existingIndex >= 0) {
-      _items[existingIndex].quantity += quantity;
-    } else {
-      _items.add(CartItem(
-        product: product,
-        quantity: quantity,
-        selectedSize: selectedSize,
-      ));
-    }
-
-    _saveCart();
+    
+    _isLoading = false;
     notifyListeners();
   }
 
-  void removeFromCart(int productId, {String? selectedSize}) {
-    _items.removeWhere(
-      (item) => item.product.id == productId && item.selectedSize == selectedSize,
-    );
-    _saveCart();
-    notifyListeners();
-  }
-
-  void updateQuantity(int productId, int quantity, {String? selectedSize}) {
-    final index = _items.indexWhere(
-      (item) => item.product.id == productId && item.selectedSize == selectedSize,
-    );
-
-    if (index >= 0) {
-      if (quantity <= 0) {
-        _items.removeAt(index);
-      } else {
-        _items[index].quantity = quantity;
+  Future<bool> addToCart(int productId, int quantity, {int? variantId}) async {
+    try {
+      final success = await _apiService.addToCart(productId, quantity, variantId: variantId);
+      if (success) {
+        await loadCart();
+        return true;
       }
-      _saveCart();
-      notifyListeners();
+      return false;
+    } catch (e) {
+      print('Error adding to cart: $e');
+      return false;
     }
   }
 
-  void clearCart() {
-    _items.clear();
-    _saveCart();
-    notifyListeners();
+  Future<bool> updateQuantity(int itemId, int quantity) async {
+    try {
+      final success = await _apiService.updateCartItem(itemId, quantity);
+      if (success) {
+        await loadCart();
+        return true;
+      }
+      return false;
+    } catch (e) {
+      print('Error updating quantity: $e');
+      return false;
+    }
+  }
+
+  Future<bool> removeFromCart(int itemId) async {
+    try {
+      final success = await _apiService.removeFromCart(itemId);
+      if (success) {
+        await loadCart();
+        return true;
+      }
+      return false;
+    } catch (e) {
+      print('Error removing from cart: $e');
+      return false;
+    }
+  }
+
+  Future<bool> clearCart() async {
+    try {
+      final success = await _apiService.clearCart();
+      if (success) {
+        _items.clear();
+        notifyListeners();
+        return true;
+      }
+      return false;
+    } catch (e) {
+      print('Error clearing cart: $e');
+      return false;
+    }
+  }
+
+  Future<Map<String, dynamic>?> validateCart() async {
+    try {
+      return await _apiService.validateCart();
+    } catch (e) {
+      print('Error validating cart: $e');
+      return null;
+    }
   }
 }

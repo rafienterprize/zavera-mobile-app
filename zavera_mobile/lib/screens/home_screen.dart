@@ -5,7 +5,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:provider/provider.dart';
 import '../models/product.dart';
 import '../services/api_service.dart';
-import '../widgets/product_card.dart';
 import '../widgets/horizontal_category_scroll.dart';
 import '../providers/auth_provider.dart';
 import 'category_detail_screen.dart';
@@ -21,6 +20,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final ApiService _apiService = ApiService();
   List<Product> _products = [];
   bool _isLoading = true;
+  final FocusNode _searchFocusNode = FocusNode();
+  bool _isGridView = true; // Toggle grid/list view
 
   final List<Map<String, String>> _banners = [
     {
@@ -56,6 +57,12 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     _loadProducts();
+  }
+
+  @override
+  void dispose() {
+    _searchFocusNode.dispose();
+    super.dispose();
   }
 
   Future<void> _loadProducts() async {
@@ -225,14 +232,19 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Container(
-              color: Colors.white,
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
-              child: Row(
-                children: [
+      body: GestureDetector(
+        onTap: () {
+          // Unfocus kalau tap di luar TextField
+          FocusScope.of(context).unfocus();
+        },
+        child: SafeArea(
+          child: Column(
+            children: [
+              Container(
+                color: Colors.white,
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+                child: Row(
+                  children: [
                   Expanded(
                     child: Container(
                       height: 40,
@@ -253,6 +265,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           Expanded(
                             child: TextField(
+                              focusNode: _searchFocusNode,
                               decoration: InputDecoration(
                                 hintText: 'Cari produk...',
                                 hintStyle: TextStyle(
@@ -263,6 +276,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 contentPadding: EdgeInsets.zero,
                                 isDense: true,
                               ),
+                              onTap: () {
+                                // Kalau user tap search, focus
+                                _searchFocusNode.requestFocus();
+                              },
                             ),
                           ),
                         ],
@@ -342,7 +359,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CarouselSlider(
+                        CarouselSlider(
                         options: CarouselOptions(
                           height: 450,
                           viewportFraction: 1.0,
@@ -958,78 +975,227 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                       ),
-                      Container(
-                        color: const Color(0xFF1a1a1a),
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-                        child: Column(
-                          children: [
-                            Text(
-                              'Dapatkan Update Terbaru',
-                              style: GoogleFonts.playfairDisplay(
-                                fontSize: 26,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            const SizedBox(height: 8),
-                            const Text(
-                              'Subscribe untuk mendapatkan info koleksi terbaru dan penawaran eksklusif',
-                              style: TextStyle(
-                                fontSize: 13,
-                                color: Colors.white70,
-                                height: 1.5,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            const SizedBox(height: 24),
-                            Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  hintText: 'Masukkan email Anda',
-                                  hintStyle: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey[600],
+                      // Products Section with Grid/List Toggle
+                      if (_products.isNotEmpty)
+                        Container(
+                          color: Colors.white,
+                          padding: const EdgeInsets.all(20),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Semua Produk',
+                                        style: GoogleFonts.playfairDisplay(
+                                          fontSize: 28,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Text(
+                                        '${_products.length} produk tersedia',
+                                        style: const TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 13,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  border: InputBorder.none,
-                                  contentPadding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 14,
+                                  // Grid/List Toggle
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.grey[300]!),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        IconButton(
+                                          icon: Icon(
+                                            Icons.grid_view,
+                                            color: _isGridView ? Colors.black : Colors.grey,
+                                          ),
+                                          onPressed: () {
+                                            setState(() => _isGridView = true);
+                                          },
+                                          padding: const EdgeInsets.all(8),
+                                          constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
+                                        ),
+                                        Container(
+                                          width: 1,
+                                          height: 24,
+                                          color: Colors.grey[300],
+                                        ),
+                                        IconButton(
+                                          icon: Icon(
+                                            Icons.view_list,
+                                            color: !_isGridView ? Colors.black : Colors.grey,
+                                          ),
+                                          onPressed: () {
+                                            setState(() => _isGridView = false);
+                                          },
+                                          padding: const EdgeInsets.all(8),
+                                          constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
+                                        ),
+                                      ],
+                                    ),
                                   ),
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              // Grid View
+                              if (_isGridView)
+                                GridView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    childAspectRatio: 0.7,
+                                    crossAxisSpacing: 12,
+                                    mainAxisSpacing: 12,
+                                  ),
+                                  itemCount: _products.length,
+                                  itemBuilder: (context, index) {
+                                    final product = _products[index];
+                                    return GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                          context,
+                                          '/product-detail',
+                                          arguments: product.id,
+                                        );
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(8),
+                                          border: Border.all(color: Colors.grey[200]!),
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Expanded(
+                                              child: ClipRRect(
+                                                borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
+                                                child: CachedNetworkImage(
+                                                  imageUrl: product.primaryImage,
+                                                  width: double.infinity,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(8),
+                                              child: Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    product.name,
+                                                    style: const TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight: FontWeight.w500,
+                                                    ),
+                                                    maxLines: 2,
+                                                    overflow: TextOverflow.ellipsis,
+                                                  ),
+                                                  const SizedBox(height: 4),
+                                                  Text(
+                                                    'Rp ${product.price.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]}.')}',
+                                                    style: const TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight: FontWeight.bold,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
-                              ),
-                            ),
-                            const SizedBox(height: 12),
-                            SizedBox(
-                              width: double.infinity,
-                              child: ElevatedButton(
-                                onPressed: () {},
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.white,
-                                  foregroundColor: Colors.black,
-                                  padding: const EdgeInsets.symmetric(vertical: 14),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                  elevation: 0,
+                              // List View
+                              if (!_isGridView)
+                                ListView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount: _products.length,
+                                  itemBuilder: (context, index) {
+                                    final product = _products[index];
+                                    return GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                          context,
+                                          '/product-detail',
+                                          arguments: product.id,
+                                        );
+                                      },
+                                      child: Container(
+                                        margin: const EdgeInsets.only(bottom: 12),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(8),
+                                          border: Border.all(color: Colors.grey[200]!),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius: const BorderRadius.horizontal(left: Radius.circular(8)),
+                                              child: CachedNetworkImage(
+                                                imageUrl: product.primaryImage,
+                                                width: 120,
+                                                height: 120,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(12),
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      product.category.toUpperCase(),
+                                                      style: TextStyle(
+                                                        fontSize: 11,
+                                                        color: Colors.grey[600],
+                                                        letterSpacing: 1,
+                                                      ),
+                                                    ),
+                                                    const SizedBox(height: 4),
+                                                    Text(
+                                                      product.name,
+                                                      style: const TextStyle(
+                                                        fontSize: 16,
+                                                        fontWeight: FontWeight.w600,
+                                                      ),
+                                                      maxLines: 2,
+                                                      overflow: TextOverflow.ellipsis,
+                                                    ),
+                                                    const SizedBox(height: 8),
+                                                    Text(
+                                                      'Rp ${product.price.toStringAsFixed(0).replaceAllMapped(RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]}.')}',
+                                                      style: const TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight: FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  },
                                 ),
-                                child: const Text(
-                                  'SUBSCRIBE',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w600,
-                                    letterSpacing: 1.2,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
                     ],
                   ),
                 ),
@@ -1037,6 +1203,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ],
         ),
+      ),
       ),
     );
   }

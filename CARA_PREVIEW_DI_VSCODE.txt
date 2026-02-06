@@ -1,0 +1,134 @@
+========================================
+  PREVIEW DI VS CODE
+========================================
+
+Bro, Flutter gak bisa preview INSIDE VS Code kayak web.
+
+Preview Flutter selalu di:
+- Emulator (separate window)
+- HP (physical device)
+- Chrome (web only)
+- Windows app (butuh Visual Studio)
+
+
+SOLUSI TERBAIK: SPLIT SCREEN
+========================================
+
+┌──────────────┬──────────────┐
+│              │              │
+│  VS Code     │  Emulator    │
+│  (Code)      │  (Preview)   │
+│              │              │
+└──────────────┴──────────────┘
+
+Kayak di screenshot yang kamu tunjukin!
+
+
+CARA SETUP
+========================================
+
+1. Install VS Code Extensions:
+   - Flutter (by Dart Code)
+   - Dart (by Dart Code)
+
+2. Setup Emulator:
+   setup-emulator.bat
+
+3. Run App:
+   run-emulator-and-app.bat
+
+4. Split Screen:
+   - Drag emulator window ke kanan
+   - VS Code di kiri
+
+
+HOT RELOAD
+========================================
+
+Auto hot reload on save!
+
+Settings di VS Code:
+1. File → Preferences → Settings
+2. Search: flutter hot reload
+3. Enable: Dart: Flutter Hot Reload On Save
+
+Sekarang tinggal save, otomatis reload!
+
+
+ALTERNATIVE: SCRCPY (MIRROR HP)
+========================================
+
+Kalau mau mirror HP ke PC:
+
+1. Download Scrcpy:
+   https://github.com/Genymobile/scrcpy/releases
+
+2. Extract & run: scrcpy.exe
+
+3. Colok HP via USB
+
+4. HP screen muncul di PC!
+
+5. Split screen:
+   - VS Code di kiri
+   - Scrcpy di kanan
+
+
+KENAPA GAK BISA INSIDE VS CODE?
+========================================
+
+Flutter beda dari web development!
+
+Web:
+- Preview inside browser
+- Live reload in browser
+
+Flutter:
+- Preview di device/emulator
+- Hot reload di device/emulator
+
+Tapi tetep bisa split screen kayak di screenshot!
+
+
+SUMMARY
+========================================
+
+Setup:
+1. Install extensions (Flutter, Dart)
+2. Setup emulator (setup-emulator.bat)
+
+Run:
+1. Start emulator
+2. Run app (run-emulator-and-app.bat)
+3. Split screen (VS Code + Emulator)
+
+Hot Reload:
+- Auto on save (if enabled)
+- Or press 'r' in terminal
+
+
+BEST EXPERIENCE
+========================================
+
+┌──────────────┬──────────────┐
+│              │              │
+│  VS Code     │  Emulator    │
+│  (Edit Code) │  (Preview)   │
+│              │              │
+│  Save        │  Auto Reload │
+│  (Ctrl+S)    │  (< 1 sec)   │
+│              │              │
+└──────────────┴──────────────┘
+
+
+FILES
+========================================
+
+run-emulator-and-app.bat    ← Start emulator + app
+setup-emulator.bat          ← Setup emulator
+SETUP_VSCODE_PREVIEW.md     ← Full guide
+
+
+========================================
+  PERSIS KAYAK DI SCREENSHOT! 🔥
+========================================

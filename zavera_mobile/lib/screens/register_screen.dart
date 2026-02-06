@@ -24,7 +24,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     setState(() => _isLoading = true);
 
-    final success = await context.read<AuthProvider>().register({
+    final result = await context.read<AuthProvider>().register({
       'first_name': _firstNameController.text,
       'last_name': _lastNameController.text,
       'email': _emailController.text,
@@ -33,11 +33,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     setState(() => _isLoading = false);
 
-    if (success && mounted) {
+    if (result['success'] == true && mounted) {
       Navigator.pushReplacementNamed(context, '/home');
     } else if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Registrasi gagal. Silakan coba lagi.')),
+        SnackBar(content: Text(result['message'] ?? 'Registrasi gagal. Silakan coba lagi.')),
       );
     }
   }

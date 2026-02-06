@@ -1,15 +1,14 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import '../models/product.dart';
 import '../models/user.dart';
 import '../models/cart_item.dart';
 
 class ApiService {
-  // IMPORTANT: Update this with your backend IP address
-  // For local testing: http://YOUR_LAPTOP_IP:8080/api
-  // For production: https://your-domain.com/api
-  static const String baseUrl = 'http://localhost:8080/api';
+  // Load from .env file
+  static String get baseUrl => dotenv.env['API_BASE_URL'] ?? 'http://localhost:8080/api';
   
   // Get auth token
   Future<String?> _getToken() async {
